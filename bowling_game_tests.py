@@ -38,3 +38,8 @@ class BowlingGameTest(unittest.TestCase):
     def test_for_11_frames(self):
         self.roll(1, 23)
         self.assertEqual(20, self.bg.score())
+
+    def test_error_on_missing_rolls_in_frame(self):
+        self.bg.roll(10)
+        with self.assertRaises(IndexError):
+            self.bg.score()

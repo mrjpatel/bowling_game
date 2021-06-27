@@ -6,13 +6,16 @@ class FrameScorer:
 
     def score_for_frame(self, frame, rolls):
         score = 0
-        for _ in range(frame):
-            if self.is_strike(rolls):
-                score += self.score_for_strike(rolls)
-            elif self.is_spare(rolls):
-                score += self.score_for_spare(rolls)
-            else:
-                score += self.score_for_normal(rolls)
+        try:
+            for _ in range(frame):
+                if self.is_strike(rolls):
+                    score += self.score_for_strike(rolls)
+                elif self.is_spare(rolls):
+                    score += self.score_for_spare(rolls)
+                else:
+                    score += self.score_for_normal(rolls)
+        except IndexError:
+            raise IndexError("Not enough rolls provided in frame, cannot calculate score")
         return score
 
     def is_strike(self, rolls):
