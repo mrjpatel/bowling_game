@@ -9,9 +9,8 @@ class FrameScorer:
         for _ in range(frame):
             if self.is_strike(rolls):
                 score += self.score_for_strike(rolls)
-            elif rolls[self.ball] + rolls[self.ball + 1] == self.MAX_PINS:
-                self.ball += 2
-                score += 10 + rolls[self.ball]
+            elif self.is_spare(rolls):
+                score += self.score_for_spare(rolls)
             else:
                 score += self.score_for_normal(rolls)
         return score
@@ -21,9 +20,16 @@ class FrameScorer:
 
     def score_for_strike(self, rolls):
         self.ball += 1
-        return 10 + rolls[self.ball] + rolls[self.ball + 1]
+        return self.MAX_PINS + rolls[self.ball] + rolls[self.ball + 1]
 
     def score_for_normal(self, rolls):
         score_for_normal = rolls[self.ball] + rolls[self.ball + 1]
         self.ball += 2
         return score_for_normal
+
+    def is_spare(self, rolls):
+        return rolls[self.ball] + rolls[self.ball + 1] == self.MAX_PINS
+
+    def score_for_spare(self, rolls):
+        self.ball += 2
+        return self.MAX_PINS + rolls[self.ball]
