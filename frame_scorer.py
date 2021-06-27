@@ -9,6 +9,9 @@ class FrameScorer:
         for _ in range(frame):
             if self.is_strike(rolls):
                 score += self.score_for_strike(rolls)
+            elif rolls[self.ball] + rolls[self.ball + 1] == self.MAX_PINS:
+                self.ball += 2
+                score += 10 + rolls[self.ball]
             else:
                 score += self.score_for_normal(rolls)
         return score

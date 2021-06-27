@@ -27,3 +27,10 @@ class BowlingGameTest(unittest.TestCase):
         self.bg.roll(5)
         self.bg.roll(4)
         self.assertEqual(28, self.bg.score())
+
+    def test_for_a_spare(self):
+        self.bg.roll(4)
+        self.bg.roll(6)
+        self.bg.roll(5)
+        self.bg.roll(0)
+        self.assertEqual(20, self.bg.score())
