@@ -5,12 +5,16 @@ from bowling_game import BowlingGame
 
 class BowlingGameTest(unittest.TestCase):
 
+    def setUp(self):
+        self.bg = BowlingGame()
+
+    def roll(self, pins, times):
+        for _ in range(times):
+            self.bg.roll(pins)
+
     def test_score_at_game_start(self):
-        bg = BowlingGame()
-        self.assertEqual(0, bg.score())
+        self.assertEqual(0, self.bg.score())
 
     def test_two_fours(self):
-        bg = BowlingGame()
-        bg.roll(4)
-        bg.roll(4)
-        self.assertEqual(8, bg.score())
+        self.roll(4, 2)
+        self.assertEqual(8, self.bg.score())
