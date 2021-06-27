@@ -34,3 +34,7 @@ class BowlingGameTest(unittest.TestCase):
         self.bg.roll(5)
         self.bg.roll(0)
         self.assertEqual(20, self.bg.score())
+
+    def test_for_11_frames(self):
+        self.roll(1, 23)
+        self.assertEqual(20, self.bg.score())
