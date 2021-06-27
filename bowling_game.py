@@ -26,3 +26,8 @@ class BowlingGame:
         else:
             self.first_roll_in_frame = True
             self.current_frame_number = min(self.current_frame_number + 1, self.frame_scorer.MAX_PINS)
+
+    def print_scores(self):
+        player_score = self.score()
+        print(f"Player rolled {self.rolls}")
+        print(f"Player score is {player_score}")
