@@ -2,7 +2,6 @@ from frame_scorer import FrameScorer
 
 
 class BowlingGame:
-    MAX_PINS = 10
 
     def __init__(self):
         self.frame_scorer = FrameScorer()
@@ -16,14 +15,14 @@ class BowlingGame:
 
     def roll(self, pins):
         self.rolls.append(pins)
-        self.adjust_frame_if_strike(pins)
+        self.adjust_frame_if_a_strike(pins)
 
-    def adjust_frame_if_strike(self, pins):
+    def adjust_frame_if_a_strike(self, pins):
         if self.first_roll_in_frame:
-            if pins == 10:  # frame is finished so adjust current to new frame
-                self.current_frame_number = min(self.current_frame_number + 1, self.MAX_PINS)
-            else:  # adjust roll in frame since its not a strike
+            if pins == self.frame_scorer.MAX_PINS:
+                self.current_frame_number = min(self.current_frame_number + 1, self.frame_scorer.MAX_PINS)
+            else:
                 self.first_roll_in_frame = False
         else:
             self.first_roll_in_frame = True
-            self.current_frame_number = min(self.current_frame_number + 1, self.MAX_PINS)
+            self.current_frame_number = min(self.current_frame_number + 1, self.frame_scorer.MAX_PINS)
