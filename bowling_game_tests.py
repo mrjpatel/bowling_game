@@ -43,3 +43,11 @@ class BowlingGameTest(unittest.TestCase):
         self.bg.roll(10)
         with self.assertRaises(IndexError):
             self.bg.score()
+
+    def test_all_strikes(self):
+        self.roll(10, 12)
+        self.assertEqual(300, self.bg.score())
+
+    def test_all_spares(self):
+        self.roll(5, 21)
+        self.assertEqual(150, self.bg.score())
