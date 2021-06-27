@@ -22,7 +22,7 @@ class BowlingGameTest(unittest.TestCase):
     def test_gutter_game(self):
         self.roll(0, 20)
 
-    def test_strike(self):
+    def test_for_a_strike(self):
         self.bg.roll(10)
         self.bg.roll(5)
         self.bg.roll(4)
