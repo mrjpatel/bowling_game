@@ -18,3 +18,12 @@ class BowlingGameTest(unittest.TestCase):
     def test_two_fours(self):
         self.roll(4, 2)
         self.assertEqual(8, self.bg.score())
+
+    def test_gutter_game(self):
+        self.roll(0, 20)
+
+    def test_strike(self):
+        self.bg.roll(10)
+        self.bg.roll(5)
+        self.bg.roll(4)
+        self.assertEqual(28, self.bg.score())
